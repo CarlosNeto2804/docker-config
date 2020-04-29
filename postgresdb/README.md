@@ -1,3 +1,9 @@
+# IMPORTANTE
+- Todos os recursos do banco de dados Postgres foram criados pela [Professora 
+Vanessa Borges](https://github.com/vanborges) que disponibilizou em seu repositório para os alunos disciplina de [Banco de Dados](https://github.com/vanborges/lbd) 
+
+
+
 # Docker play
 https://labs.play-with-docker.com/
 
