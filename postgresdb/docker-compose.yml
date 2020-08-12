@@ -3,7 +3,7 @@ services:
   postgres:
     build:
       context: .
-      dockerfile: Dockerfile.postgres
+      dockerfile: Dockerfile.postgres.clinica
     image: postgres_container
     container_name: postgres_container
     ports:
