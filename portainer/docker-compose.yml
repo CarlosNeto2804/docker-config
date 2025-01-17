@@ -2,11 +2,12 @@ version: "3"
 
 services:
   portainer:
-    image: portainer/portainer
+    image: portainer/portainer-ce
     container_name: Portainer
     restart: always
-    ports: 
-        - 9000:9000
+    ports:
+      - 18000:9000   # web
+      - 18001:8000   # agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
