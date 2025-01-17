@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     ports:
       - 18000:9000   # web
-      - 18001:8000   # agent
+      # - 18001:8000   # agent
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
