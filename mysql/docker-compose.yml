@@ -1,24 +1,39 @@
-version: '3.7'
-
+version: '3.8'
 services:
-  db:
-    image: mysql:latest
-    container_name: "mysql-container"
-    restart: always
-    ports:
-      - "3306:3306"
-    volumes:
-      - /var/lib/mysql
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
     environment:
-      - MYSQL_ROOT_PASSWORD=123
-    networks: 
-      lbd_aula:
-        ipv4_address: 172.10.0.4
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      internal_network:
+        ipv4_address: 172.20.0.10
 
-networks: 
-  lbd_aula:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: pass
+    ports:
+      - "9001:80"
+    networks:
+      internal_network:
+        ipv4_address: 172.20.0.11
+    depends_on:
+      - mysql
+
+networks:
+  internal_network:
     driver: bridge
-    ipam: 
-      driver: default
-      config: 
-        - subnet: 172.10.0.0/24  
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+          gateway: 172.20.0.1
+
+volumes:
+  mysql_data:
